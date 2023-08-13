@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_5/screens/login_screen.dart';
 
 class OpeningScreen extends StatelessWidget {
   const OpeningScreen({super.key});
@@ -6,158 +7,74 @@ class OpeningScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-   body: Container(
-    width: MediaQuery.of(context).size.width,
-    height: MediaQuery.of(context).size.height,
+ body: Stack(
+        children: [
 
-    decoration: const BoxDecoration(
-     color: Colors.green,
-    ),
-    
-
-      child:  Column(
-       children:[
-        SizedBox( 
-        height: MediaQuery.of(context).size.height* 0.02,
+          Container(
+        decoration: const BoxDecoration(
+          image: DecorationImage(
+            image: NetworkImage('https://t3.ftcdn.net/jpg/04/40/07/88/360_F_440078858_wQuMz5yLCvTzl4QA2ZWzO7IS8O1mNcwA.jpg'), 
+            fit: BoxFit.cover, 
+          ),
         ),
         
-        Image.asset("images/logooo.png",height: MediaQuery.of(context).size.height* 0.2),
-      
-       SizedBox( 
-        height: MediaQuery.of(context).size.height* 0.05,
-        ),
-       Expanded(child: 
-        Container(
-          decoration: const BoxDecoration(
-            color:Colors.white,borderRadius: BorderRadius.only(
-              topLeft: Radius.circular(60),
-              topRight: Radius.circular(60))
-          ),
-
-          child:  Column(
-            children: [
-              SizedBox( 
-        height: MediaQuery.of(context).size.height* 0.04,
-        ),
-               const Text("Login", 
-               style: TextStyle( fontSize: 30, 
-               fontWeight: FontWeight.bold, 
-       ),
-       ),
-//لتصغير التيكست فيلد من الجانبين
-        Padding(
-              padding: const EdgeInsets.all(20),
-             child: Column(
-              children: [
-                SizedBox(
-                  height: MediaQuery.of(context).size.height *0.001 ,
-                ),
-                
-
-                Container(
-                  padding: const EdgeInsets.all(0.5),
-                  decoration:  BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(50),
-                    border: Border.all(color: Colors.black)
-                  ),
-                 child: const TextField(
-                  decoration: InputDecoration(
-                    labelText: "username",
-                    hintStyle:TextStyle(color: Colors.grey),
-                    border: InputBorder.none,
-                    prefixIcon: Icon(Icons.person)
-                  ),
-                  )
-                ),
-                SizedBox(
-                  height: MediaQuery.of(context).size.height *0.01 ,
-                ),
-
-
-                Container(
-                  padding: const EdgeInsets.all(0.5),
-                  decoration:  BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(60),
-                    border: Border.all(color: Colors.black)
-                  ),
-                 child: const TextField(
-                  decoration: InputDecoration(
-                    labelText: "password",
-                    hintStyle:TextStyle(color: Colors.grey),
-                    border: InputBorder.none,
-                    prefixIcon: Icon(Icons.https),
-                   suffixIcon: Icon(Icons.visibility_off)
-                   ),
-                  )
-                ),
-SizedBox(
-                  height: MediaQuery.of(context).size.height *0.02 ,
-                ),
-               
-               Row(
-                children: [
-                  SizedBox(
-                  width: MediaQuery.of(context).size.width *0.5 ,
-                ),
-
-                const Text(
-                  "New to quizz app?", style: TextStyle(fontSize: 12),
-                  ),
-                TextButton(onPressed: () {},
-                child: const Text(
-                  "Register", style: TextStyle(color: Colors.green),
-                ),
-                ),
-                ],
-               ),
-               SizedBox(
-                  height: MediaQuery.of(context).size.height *0.02 ,
-                ),
-               Container(
-                        margin: const EdgeInsets.symmetric(
-                            horizontal: 12, vertical: 10),
-                        width: MediaQuery.of(context).size.width *0.4 ,
-                        child: ElevatedButton(
-                          style:  ButtonStyle ( backgroundColor: MaterialStateProperty.all(Colors.green)),
-                            onPressed: () {}, child: const Text("login",style: TextStyle(color: Colors.white),)
+      ),
+                       
+      Positioned(
+              left: 0,
+              right: 0,
+              bottom: 16.0,
+              child: Center(
+  child: ElevatedButton(
+                            onPressed: () {
+                              Navigator.push(context, MaterialPageRoute<void>(
+                          builder: (BuildContext context) =>
+                              const LoginScreen(),
+                              ),
+                              );
+                            },
+                            style:  ButtonStyle ( backgroundColor: MaterialStateProperty.all(Colors.green)),
+                            child: const Text("start",style: TextStyle(color: Colors.white),)
                             )
-                            ),
-                                        Image.asset("images/logoo.png",height: MediaQuery.of(context).size.height *0.1,),
-                                   const Text("use touch ID", style: TextStyle(color: Colors.grey),),
-                            SizedBox(
-                  height: MediaQuery.of(context).size.height *0.08 ,
+              ),
+      ),
+                       
+   const Align(
+          alignment: Alignment.center,
+   child: Column(
+  
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              CircleAvatar(
+                radius: 80,
+                backgroundImage: NetworkImage('https://barretstown.org/wp-content/uploads/2022/10/Blue-Yellow-Modern-Waves-Quiz-Time-Instagram-Post.png'), 
+              ),
+               Text(
+                'ITI Quiz App',
+                style: TextStyle(
+                  fontSize: 34,
+                  fontWeight: FontWeight.bold,
+                  fontStyle:FontStyle.italic,
+                  color: Color.fromARGB(255, 251, 153, 7),
                 ),
-                    
-                Row(
-                      children: [
-                  SizedBox(
-                      width: MediaQuery.of(context).size.width *0.1 ,
-                  ),
-                    TextButton(onPressed: () {}, 
-                    child: const Text("Remember me", style: TextStyle(color: Colors.black),
-                    ),
-                    ),
-                    SizedBox(
-                      width: MediaQuery.of(context).size.width *0.2 ,
-                  ),
-                    TextButton(onPressed: () {}, 
-                    child: const Text("forget password?", style: TextStyle(color: Colors.green),
-                    ),
-                    ),
-                ],)
-              ],
-             )
-             ),
+              ),
+            Text(
+                'We Are Creatve, enjoy our app',
+                style: TextStyle(
+                  fontSize: 22,
+                  fontWeight: FontWeight.bold,
+                  fontStyle:FontStyle.italic,
+                  color: Color.fromARGB(255, 255, 255, 255),
+                ),
+              ),
             ],
+            
           ),
-        )
+   )
+        ],
        ),
-    ]
-   ) 
-   ),
-   );
-   
+       );
+    
   }
 }
