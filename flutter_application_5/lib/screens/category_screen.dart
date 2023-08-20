@@ -9,7 +9,7 @@ class CategoryScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
      body: Column(
-      children: [ for(int i=0 ; i<3 ; i++) CategoryContainer(index:i) ],
+      children: [ for(int i=0 ; i<6 ; i++) CategoryContainer(index:i) ],
      )
     );
   }

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_5/screens/category_screen.dart';
+import 'package:flutter_application_5/Global/name.dart';
+import 'package:flutter_application_5/screens/opening_screen.dart';
 
 class LoginScreen extends StatelessWidget {
    LoginScreen({super.key});
@@ -50,14 +52,46 @@ String? _yourPassword(String? value) {
     decoration: const BoxDecoration(
      color: Colors.green,
     ),
-    
+     
 
       child:  Column(
        children:[
-        SizedBox( 
-        height: MediaQuery.of(context).size.height* 0.02,
-        ),
-        
+      
+       Row(
+        mainAxisAlignment: MainAxisAlignment.start,
+         children: [
+           BackButton(
+            onPressed: () {
+              showDialog(
+          context: context,
+          builder: (BuildContext context) {
+            return AlertDialog(
+              title: Text('Confirmation'),
+              content: Text('Do you want to stay or exit the app?'),
+              actions: [
+                ElevatedButton(
+                  onPressed: () {
+                    Navigator.of(context).pop(false); // Stay
+                  },
+                  child: Text('Stay'),
+                ),
+                ElevatedButton(
+                  onPressed: () {
+                    Navigator.push(context,  MaterialPageRoute<void>(
+                                  builder: (BuildContext context) =>  OpeningScreen(),
+                                           ),
+                                        );
+                  },
+                  child: Text('Exit'),
+                ),
+              ],
+            );
+          },
+        );
+            },
+           ),
+         ],
+       ),
         Image.asset("images/logooo.png",height: MediaQuery.of(context).size.height* 0.2),
       
        SizedBox( 
@@ -94,6 +128,7 @@ String? _yourPassword(String? value) {
                     child: Container(
                       height: 60,
                      child:  TextFormField(
+                      controller: username,
                       validator: (value) {
                     if (value!.isEmpty) 
                         return "User name must not be empty ";
@@ -128,7 +163,6 @@ String? _yourPassword(String? value) {
                       )
                     ),
                   ),
-                
                   Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: Container(

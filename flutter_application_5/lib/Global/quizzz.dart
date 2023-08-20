@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
-List datalist = [
+////  Global variable  ////
+List <Map<String,dynamic>> datalist = [
 {
   "category name": "Sports Test",
   "color": Colors.blue,
@@ -37,7 +38,7 @@ List datalist = [
 },
 {
   "category name":"General Test",
-  "color":Colors.green,
+  "color":Color.fromARGB(255, 248, 129, 168),
   "data":[
     {
       "question":"What is the capital city of Australia?",
@@ -71,7 +72,7 @@ List datalist = [
 },
 {
    "category name":"History Test",
-  "color":Colors.orange,
+  "color":Colors.green,
   "data":[
     {
       "question":"In what year did World War I begin?",
@@ -102,5 +103,103 @@ List datalist = [
     }
   ]
 },
-
+{
+   "category name":"IQ Test",
+  "color":Color.fromARGB(255, 252, 121, 112),
+  "data":[
+    {
+      "question":"If a plane travels at 500 miles per hour and it takes 2 hours to reach its destination, how far did it travel?",
+      "answers":[
+       {"ans": "1000 miles", "score": "1"},
+        {"ans": "250 miles", "score": "0"},
+        {"ans": "750 miles", "score": "0"},
+        {"ans": "1500 miles", "score": "0"},
+      ],
+    },
+    {
+      "question": "Which number comes next in the sequence: 2, 4, 8, 16, __?",
+      "answers": [
+        {"ans": "24", "score": "0"},
+        {"ans": "32", "score": "1"},
+        {"ans": "20", "score": "0"},
+        {"ans": "40", "score": "0"}
+      ]
+    },
+    {
+      "question": "If you rearrange the letters 'RAPIS,' you would get the name of which country?",
+      "answers": [
+        {"ans": "Spain", "score": "0"},
+        {"ans": "Russia", "score": "0"},
+        {"ans": "Paris", "score": "0"},
+        {"ans": "Paris", "score": "1"}
+      ]
+    }
+  ]
+},
+{
+   "category name":"Math Test",
+  "color":Colors.orange,
+  "data":[
+    {
+      "question": "What is the result of 8 divided by 2?",
+      "answers": [
+        {"ans": "4", "score": "1"},
+        {"ans": "6", "score": "0"},
+        {"ans": "10", "score": "0"},
+        {"ans": "2", "score": "0"}
+      ]
+    },
+    {
+      "question": "If a rectangle has a length of 10 units and a width of 5 units, what is its area?",
+      "answers": [
+        {"ans": "50 square units", "score": "1"},
+        {"ans": "30 square units", "score": "0"},
+        {"ans": "15 square units", "score": "0"},
+        {"ans": "25 square units", "score": "0"},
+      ]
+    },
+    {
+      "question": "What is the result of 3^4?",
+      "answers": [
+        {"ans": "9", "score": "0"},
+        {"ans": "81", "score": "1"},
+        {"ans": "12", "score": "0"},
+        {"ans": "64", "score": "0"},
+      ]
+    }
+  ]
+},
+{
+   "category name":"Food Test",
+  "color":Color.fromARGB(255, 238, 141, 255),
+  "data":[
+   {
+      "question": "Which Italian pasta is shaped like small rice grains?",
+      "answers": [
+        {"ans": "Fettuccine", "score": "0"},
+        {"ans": "Orzo", "score": "1"},
+        {"ans": "Rigatoni", "score": "0"},
+        {"ans": "Linguine", "score": "0"}
+      ]
+    },
+    {
+      "question": "What is the main ingredient in guacamole?",
+      "answers": [
+        {"ans": "Tomatoes", "score": "0"},
+        {"ans": "Onions", "score": "0"},
+        {"ans": "Avocado", "score": "1"},
+        {"ans": "Lettuce", "score": "0"}
+      ]
+    },
+    {
+      "question": "Which fruit is known as the 'king of fruits' and has a strong, distinctive smell?",
+      "answers": [
+        {"ans": "Mango", "score": "1"},
+        {"ans": "Banana", "score": "0"},
+        {"ans": "Apple", "score": "0"},
+        {"ans": "Orange", "score": "0"}
+      ]
+    }
+  ]
+},
 ];
