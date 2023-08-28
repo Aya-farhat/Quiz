@@ -3,11 +3,25 @@ import 'package:flutter_application_5/screens/category_screen.dart';
 import 'package:flutter_application_5/Global/name.dart';
 import 'package:flutter_application_5/screens/opening_screen.dart';
 
-class LoginScreen extends StatelessWidget {
+class LoginScreen extends StatefulWidget {
    LoginScreen({super.key});
 
+  @override
+  State<LoginScreen> createState() => _LoginScreenState();
+}
+
+class _LoginScreenState extends State<LoginScreen>with SingleTickerProviderStateMixin {
+  late AnimationController _logocontroller;
+  void initState() {
+    super.initState();
+   _logocontroller=AnimationController(vsync: this , duration: Duration(seconds: 2));
+   _logocontroller.forward();
+  
+  }
 final _formKey = GlobalKey<FormState>();
+
 final TextEditingController _password =TextEditingController();
+
 final TextEditingController _email =TextEditingController();
 
 String? _yourPassword(String? value) {
@@ -92,7 +106,9 @@ String? _yourPassword(String? value) {
            ),
          ],
        ),
-        Image.asset("images/logooo.png",height: MediaQuery.of(context).size.height* 0.2),
+        FadeTransition(
+          opacity: _logocontroller,
+          child: Image.asset("images/logooo.png",height: MediaQuery.of(context).size.height* 0.2)),
       
        SizedBox( 
         height: MediaQuery.of(context).size.height* 0.05,
@@ -113,71 +129,81 @@ String? _yourPassword(String? value) {
                 SizedBox( 
                   height: MediaQuery.of(context).size.height* 0.02,
                   ),
-                 const Text("Login", 
-                 style: TextStyle( fontSize: 30, 
-                 fontWeight: FontWeight.bold, 
-                 ),
+                 FadeTransition(
+                  opacity: _logocontroller,
+                   child: const Text("Login", 
+                   style: TextStyle( fontSize: 30, 
+                   fontWeight: FontWeight.bold, 
+                   ),
+                   ),
                  ),
                 
                   SizedBox(
                     height: MediaQuery.of(context).size.height *0.001 ,
                   ),
                 
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Container(
-                      height: 60,
-                     child:  TextFormField(
-                      controller: username,
-                      validator: (value) {
-                    if (value!.isEmpty) 
-                        return "User name must not be empty ";
-                    if (value.length <= 5)
-                        return "User name must not be more than 5 charcters";
-                    if(value[0] != value[0].toUpperCase())    
-                        return "First litter must be capitalize";
-                                   },
-                      decoration: InputDecoration(
-                      labelText: "username",
-                        hintStyle:TextStyle(color: Colors.grey),
-                        border: OutlineInputBorder(borderRadius: BorderRadius.circular(30)),
-                        prefixIcon: Icon(Icons.person),
-                      ),
-                      )
-                    ),
-                  ),
-                  
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Container(
-                      height: 60,
-                     child:  TextFormField(
-                  controller: _email,
-                  validator: _yourEmail,
-                      decoration: InputDecoration(
-                        labelText: "E-mail",
-                        hintStyle:TextStyle(color: Colors.grey),
-                        border: OutlineInputBorder(borderRadius: BorderRadius.circular(30)),
-                        prefixIcon: Icon(Icons.mail),
-                       ),
-                      )
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Container(
-                      height: 60,
-                     child:  TextFormField(
-                      controller: _password,
-                      validator: _yourPassword,
-                      decoration: InputDecoration(
-                        labelText: "password",
-                        hintStyle:TextStyle(color: Colors.grey),
-                        border:OutlineInputBorder(borderRadius: BorderRadius.circular(30)),
-                        prefixIcon: Icon(Icons.https),
-                       suffixIcon: Icon(Icons.visibility_off)
-                       ),
-                      )
+                  ScaleTransition(
+                    scale: _logocontroller,
+                    child: Column(
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Container(
+                            height: 60,
+                           child:  TextFormField(
+                            controller: username,
+                            validator: (value) {
+                          if (value!.isEmpty) 
+                              return "User name must not be empty ";
+                          if (value.length <= 5)
+                              return "User name must not be more than 5 charcters";
+                          if(value[0] != value[0].toUpperCase())    
+                              return "First litter must be capitalize";
+                                         },
+                            decoration: InputDecoration(
+                            labelText: "username",
+                              hintStyle:TextStyle(color: Colors.grey),
+                              border: OutlineInputBorder(borderRadius: BorderRadius.circular(30)),
+                              prefixIcon: Icon(Icons.person),
+                            ),
+                            )
+                          ),
+                        ),
+                        
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Container(
+                            height: 60,
+                           child:  TextFormField(
+                        controller: _email,
+                        validator: _yourEmail,
+                            decoration: InputDecoration(
+                              labelText: "E-mail",
+                              hintStyle:TextStyle(color: Colors.grey),
+                              border: OutlineInputBorder(borderRadius: BorderRadius.circular(30)),
+                              prefixIcon: Icon(Icons.mail),
+                             ),
+                            )
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Container(
+                            height: 60,
+                           child:  TextFormField(
+                            controller: _password,
+                            validator: _yourPassword,
+                            decoration: InputDecoration(
+                              labelText: "password",
+                              hintStyle:TextStyle(color: Colors.grey),
+                              border:OutlineInputBorder(borderRadius: BorderRadius.circular(30)),
+                              prefixIcon: Icon(Icons.https),
+                             suffixIcon: Icon(Icons.visibility_off)
+                             ),
+                            )
+                          ),
+                        ),
+                      ],
                     ),
                   ),
                  
@@ -203,22 +229,25 @@ String? _yourPassword(String? value) {
                  
                  Padding(
                    padding: const EdgeInsets.all(8),
-                   child: Container(
-                            width: MediaQuery.of(context).size.width *0.5 ,
-                            child: ElevatedButton(
-                              style:  ButtonStyle ( backgroundColor: MaterialStateProperty.all(Colors.green)),
-                                onPressed: () {
-                                  if (_formKey.currentState!.validate()) {
+                   child: ScaleTransition(
+                    scale: _logocontroller,
+                     child: Container(
+                              width: MediaQuery.of(context).size.width *0.5 ,
+                              child: ElevatedButton(
+                                style:  ButtonStyle ( backgroundColor: MaterialStateProperty.all(Colors.green)),
+                                  onPressed: () {
+                                    if (_formKey.currentState!.validate()) {
+                                      
+                                          Navigator.push(context,  MaterialPageRoute<void>(
+                                    builder: (BuildContext context) =>  CategoryScreen(),
+                                             ),
+                                          );
+                                            }
                                     
-                                        Navigator.push(context,  MaterialPageRoute<void>(
-                                  builder: (BuildContext context) =>  CategoryScreen(),
-                                           ),
-                                        );
-                                          }
-                                  
-                                }, child: const Text("login",style: TextStyle(color: Colors.white),)
-                                )
-                                ),
+                                  }, child: const Text("login",style: TextStyle(color: Colors.white),)
+                                  )
+                                  ),
+                   ),
                  ),
                        Image.asset("images/logoo.png",height: MediaQuery.of(context).size.height *0.1,),
                         const Text("use touch ID", style: TextStyle(color: Colors.grey),),

@@ -1,13 +1,28 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_5/screens/login_screen.dart';
 
-class OpeningScreen extends StatelessWidget {
+class OpeningScreen extends StatefulWidget {
   const OpeningScreen({super.key});
 
+  @override
+  State<OpeningScreen> createState() => _OpeningScreenState();
+}
+
+class _OpeningScreenState extends State<OpeningScreen> with SingleTickerProviderStateMixin {
+  late AnimationController _logocontroller;
+  
+   @override
+  void initState() {
+    super.initState();
+   _logocontroller=AnimationController(vsync: this , duration: Duration(seconds: 2));
+   _logocontroller.forward();
+  
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
  body: Stack(
+  alignment: Alignment.center,
         children: [
 
           Container(
@@ -39,39 +54,49 @@ class OpeningScreen extends StatelessWidget {
               ),
       ),
                        
-   const Align(
-          alignment: Alignment.center,
-   child: Column(
+   Column(
   
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              CircleAvatar(
-                radius: 80,
-                backgroundImage: NetworkImage('https://barretstown.org/wp-content/uploads/2022/10/Blue-Yellow-Modern-Waves-Quiz-Time-Instagram-Post.png'), 
-              ),
-               Text(
-                'ITI Quiz App',
-                style: TextStyle(
-                  fontSize: 34,
-                  fontWeight: FontWeight.bold,
-                  fontStyle:FontStyle.italic,
-                  color: Color.fromARGB(255, 251, 153, 7),
+
+               SizedBox(
+              height: MediaQuery.of(context).size.height * 0.3,
+            ),
+
+              SlideTransition(
+                position: Tween<Offset>(begin: Offset(0, -1),end:Offset(0, 0) ).animate(_logocontroller),
+                child: CircleAvatar(
+                  radius: 80,
+                  backgroundImage: NetworkImage('https://as1.ftcdn.net/v2/jpg/05/59/59/30/1000_F_559593020_lcIJ8aE9TYdO0cOhpwtYWPsXLYwOAIAA.jpg'), 
                 ),
               ),
-            Text(
-                'We Are Creatve, enjoy our app',
-                style: TextStyle(
-                  fontSize: 22,
-                  fontWeight: FontWeight.bold,
-                  fontStyle:FontStyle.italic,
-                  color: Color.fromARGB(255, 255, 255, 255),
-                ),
-              ),
+               ScaleTransition(
+                scale: _logocontroller,
+                 child: Column(
+                   children: [
+                     Text(
+                      'ITI Quiz App',
+                      style: TextStyle(
+                        fontSize: 34,
+                        fontWeight: FontWeight.bold,
+                        fontStyle:FontStyle.italic,
+                        color: Color.fromARGB(255, 251, 153, 7),
+                      ),
+                             ),
+                           Text(
+                      'We Are Creatve, enjoy our app',
+                      style: TextStyle(
+                        fontSize: 22,
+                        fontWeight: FontWeight.bold,
+                        fontStyle:FontStyle.italic,
+                        color: Color.fromARGB(255, 255, 255, 255),
+                      ),
+                             ),
+                   ],
+                 ),
+               ),
             ],
             
-          ),
-   )
+          )
         ],
        ),
        );
